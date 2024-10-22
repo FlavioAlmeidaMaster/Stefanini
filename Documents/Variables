@@ -1,0 +1,5 @@
+export URL_DB=localhost
+export PORT_DB=5432
+export NAME_DB=meu_banco
+export USERNAME_DB=meu_usuario
+export PASSWORD_DB=minha_senha

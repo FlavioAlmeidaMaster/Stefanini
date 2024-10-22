@@ -1,0 +1,45 @@
+{
+  "source": "mockoon:1.17.0",
+  "data": [
+    {
+      "type": "environment",
+      "item": {
+        "uuid": "8a9ef898-6ad2-4b1a-a334-22a569c65af6",
+        "lastMigration": 14,
+        "name": "CEP API",
+        "endpointPrefix": "",
+        "latency": 0,
+        "port": 3000,
+        "routes": [
+          {
+            "uuid": "10cf905a-e16f-44b1-bdee-70e0e04bf5d1",
+            "documentation": "Mocked response for CEP 01001-000",
+            "method": "get",
+            "endpoint": "/cep/01001-000",
+            "responses": [
+              {
+                "uuid": "16fdb0bb-778b-4c72-8e67-99817d7cde29",
+                "body": "{\n  \"cep\": \"01001-000\",\n  \"logradouro\": \"Praça da Sé\",\n  \"complemento\": \"lado ímpar\",\n  \"bairro\": \"Sé\",\n  \"localidade\": \"São Paulo\",\n  \"uf\": \"SP\",\n  \"ibge\": \"3550308\",\n  \"gia\": \"1004\",\n  \"ddd\": \"11\",\n  \"siafi\": \"7107\"\n}",
+                "latency": 0,
+                "statusCode": 200,
+                "label": "Success",
+                "headers": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "filePath": "",
+                "sendFileAsBody": false,
+                "rules": [],
+                "disableTemplating": false,
+                "fallbackTo404": false
+              }
+            ],
+            "enabled": true
+          }
+        ]
+      }
+    }
+  ]
+}
