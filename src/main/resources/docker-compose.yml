@@ -2,24 +2,20 @@ version: '3.8'
 
 services:
   app:
-    build: .
+    image: <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com/nome-do-repositorio:latest
     ports:
       - "8080:8080"
-    networks:
-      - spring-network
-    depends_on:
-      - db
-
-  db:
-    image: postgres:13
     environment:
-      POSTGRES_DB: ${NAME_DB}
-      POSTGRES_USER: ${USERNAME_DB}
-      POSTGRES_PASSWORD: ${PASSWORD_DB}
-    ports:
-      - "${PORT_DB}:5432"
-    networks:
-      - spring-network
+      SPRING_DATASOURCE_URL: jdbc:postgresql://${AWS_DB_HOST}:${AWS_DB_PORT}/${NAME_DB}
+      SPRING_DATASOURCE_USERNAME: ${USERNAME_DB}
+      SPRING_DATASOURCE_PASSWORD: ${PASSWORD_DB}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: ecs-app-logs
+        awslogs-region: <AWS_REGION>
+        awslogs-stream-prefix: ecs
 
   mockoon:
     image: mockoon/cli
@@ -28,9 +24,7 @@ services:
     command: --data /config/mockoon-config.json --port 3000
     ports:
       - "3000:3000"
-    networks:
-      - spring-network
 
 networks:
-  spring-network:
+  default:
     driver: bridge

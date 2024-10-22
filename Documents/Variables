@@ -1,5 +1,15 @@
-export URL_DB=localhost
-export PORT_DB=5432
-export NAME_DB=meu_banco
-export USERNAME_DB=meu_usuario
-export PASSWORD_DB=minha_senha
+# URL do banco de dados (Amazon RDS)
+export AWS_DB_HOST=<ENDERECO_RDS>        # Endereço do seu banco de dados RDS (ex: meu-banco.cdg12hhs2mnl.us-east-1.rds.amazonaws.com)
+export AWS_DB_PORT=5432                  # Porta padrão do PostgreSQL
+export NAME_DB=meu_banco                 # Nome do banco de dados no RDS
+export USERNAME_DB=meu_usuario           # Nome de usuário do banco de dados no RDS
+export PASSWORD_DB=minha_senha           # Senha do banco de dados no RDS
+
+# URL de conexão para o banco
+export SPRING_DATASOURCE_URL=jdbc:postgresql://${AWS_DB_HOST}:${AWS_DB_PORT}/${NAME_DB}
+export SPRING_DATASOURCE_USERNAME=${USERNAME_DB}
+export SPRING_DATASOURCE_PASSWORD=${PASSWORD_DB}
+
+# Definições adicionais do Hibernate
+export SPRING_JPA_HIBERNATE_DDL_AUTO=update
+export SPRING_JPA_SHOW_SQL=true          # Mostra as queries SQL no log
